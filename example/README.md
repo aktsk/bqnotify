@@ -16,3 +16,7 @@ $ gcloud scheduler jobs create pubsub bqnotify \
   --topic bqnotify \
   --schedule '0 0 * * *'
 ```
+
+## Notification result example
+
+![bqnotify.jpg](../bqnotify.jpg)
