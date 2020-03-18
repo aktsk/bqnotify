@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"cloud.google.com/go/bigquery"
-	"github.com/mizzy/bqnotify/lib/config"
+	"github.com/aktsk/bqnotify/lib/config"
 	"google.golang.org/api/iterator"
 )
 

@@ -3,7 +3,7 @@ package config
 import (
 	"io/ioutil"
 
-	"github.com/mizzy/bqnotify/lib/notify"
+	"github.com/aktsk/bqnotify/lib/notify"
 
 	"gopkg.in/yaml.v2"
 )

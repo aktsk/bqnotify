@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"os"
 
-	"github.com/mizzy/bqnotify/lib/bq"
-	"github.com/mizzy/bqnotify/lib/config"
+	"github.com/aktsk/bqnotify/lib/bq"
+	"github.com/aktsk/bqnotify/lib/config"
 	"github.com/olekukonko/tablewriter"
 )
 
