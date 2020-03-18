@@ -3,7 +3,7 @@ package example
 import (
 	"context"
 
-	"github.com/mizzy/bqnotify/lib/runner"
+	"github.com/aktsk/bqnotify/lib/runner"
 )
 
 type PubSubMessage struct {
