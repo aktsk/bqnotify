@@ -27,3 +27,7 @@ crossbuild:
 	goxz -pv=v${VERSION} -build-ldflags="-X main.GitCommit=${REVISION}" \
         -arch=386,amd64 -d=./pkg/dist/v${VERSION} \
         -n ${NAME}
+
+.PHONY: release
+release: package
+	ghr -u aktsk v${VERSION} ./pkg/dist/v${VERSION}
