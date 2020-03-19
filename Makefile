@@ -7,3 +7,7 @@ build:
 .PHONY: build
 clean:
 	rm bin/$(NAME)
+
+.PHONY: lint
+lint:
+	golint ./...

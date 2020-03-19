@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// Slack has configurations for notifying to Slack
 type Slack struct {
 	Channel  string `json:"channel"`
 	URL      string `json:"-"`
@@ -26,6 +27,7 @@ type attachment struct {
 	Color string `json:"color"`
 }
 
+// Notify notifies BigQuery query results to Slack
 func (s Slack) Notify(message string) error {
 	if s.Channel[0] != '#' {
 		s.Channel = "#" + s.Channel

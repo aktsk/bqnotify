@@ -8,12 +8,14 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+// Config has configurations of BigQuery and Slack
 type Config struct {
 	Project string
 	SQL     string
 	Slack   notify.Slack
 }
 
+// Parse parses config.yaml
 func Parse() (*Config, error) {
 	buf, err := ioutil.ReadFile("config.yaml")
 	if err != nil {

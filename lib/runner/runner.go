@@ -9,6 +9,7 @@ import (
 	"github.com/olekukonko/tablewriter"
 )
 
+// Run coordinates functions of bqnotify
 func Run() error {
 	conf, err := config.Parse()
 	if err != nil {

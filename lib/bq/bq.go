@@ -9,6 +9,7 @@ import (
 	"google.golang.org/api/iterator"
 )
 
+// Query runs queries to BigQuery and return results
 func Query(conf *config.Config) ([]string, [][]string, error) {
 	ctx := context.Background()
 
