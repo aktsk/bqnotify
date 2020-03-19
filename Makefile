@@ -11,3 +11,7 @@ clean:
 .PHONY: lint
 lint:
 	golint ./...
+
+.PHONY: fmt
+fmt:
+	goimports -w .
