@@ -1,4 +1,6 @@
 NAME := bqnotify
+VERSION = $(shell gobump show -r)
+REVISION := $(shell git rev-parse --short HEAD)
 
 .PHONY: build
 build:
@@ -15,3 +17,12 @@ lint:
 .PHONY: fmt
 fmt:
 	goimports -w .
+
+.PHONY: package
+package:
+	@sh -c "'$(CURDIR)/scripts/package.sh'"
+
+crossbuild:
+	goxz -pv=v${VERSION} -build-ldflags="-X main.GitCommit=${REVISION}" \
+        -arch=386,amd64 -d=./pkg/dist/v${VERSION} \
+        -n ${NAME}
