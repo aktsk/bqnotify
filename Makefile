@@ -31,3 +31,8 @@ crossbuild:
 .PHONY: release
 release: package
 	ghr -u aktsk v${VERSION} ./pkg/dist/v${VERSION}
+
+.PHONY: bump
+bump:
+	@sh -c "'$(CURDIR)/scripts/bump.sh'"
+
