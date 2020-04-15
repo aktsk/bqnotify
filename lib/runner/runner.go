@@ -7,6 +7,7 @@ import (
 	"github.com/aktsk/bqnotify/lib/bq"
 	"github.com/aktsk/bqnotify/lib/config"
 	"github.com/olekukonko/tablewriter"
+	"golang.org/x/sync/errgroup"
 )
 
 // Run coordinates functions of bqnotify
@@ -16,7 +17,28 @@ func Run() error {
 		return err
 	}
 
-	headers, values, err := bq.Query(conf)
+	eg := errgroup.Group{}
+	for _, query := range conf.Queries {
+		query := query // capture variable for goroutine
+		if query.Slack == nil {
+			query.Slack = conf.Slack
+		}
+
+		eg.Go(func() error {
+			return run(conf.Project, query)
+		})
+	}
+
+	err = eg.Wait()
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func run(project string, query config.Query) error {
+	headers, values, err := bq.Query(project, query)
 	if err != nil {
 		return err
 	}
@@ -36,8 +58,8 @@ func Run() error {
 
 	table.Render()
 
-	conf.Slack.URL = os.Getenv("SLACK_WEBHOOK_URL")
-	conf.Slack.Notify("```\n" + buf.String() + "```")
+	query.Slack.URL = os.Getenv("SLACK_WEBHOOK_URL")
+	query.Slack.Notify("```\n" + buf.String() + "```")
 
 	return nil
 }

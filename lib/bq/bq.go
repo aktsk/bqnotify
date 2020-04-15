@@ -10,15 +10,15 @@ import (
 )
 
 // Query runs queries to BigQuery and return results
-func Query(conf *config.Config) ([]string, [][]string, error) {
+func Query(project string, query config.Query) ([]string, [][]string, error) {
 	ctx := context.Background()
 
-	client, err := bigquery.NewClient(ctx, conf.Project)
+	client, err := bigquery.NewClient(ctx, project)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	q := client.Query(conf.SQL)
+	q := client.Query(query.SQL)
 	it, err := q.Read(ctx)
 	if err != nil {
 		return nil, nil, err

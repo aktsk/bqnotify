@@ -11,8 +11,13 @@ import (
 // Config has configurations of BigQuery and Slack
 type Config struct {
 	Project string
-	SQL     string
-	Slack   notify.Slack
+	Queries []Query
+	Slack   *notify.Slack
+}
+
+type Query struct {
+	SQL   string
+	Slack *notify.Slack
 }
 
 // Parse parses config.yaml
