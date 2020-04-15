@@ -7,7 +7,7 @@ import (
 	"github.com/aktsk/bqnotify/lib/runner"
 )
 
-var version = "0.1.0"
+var version = "0.2.0"
 
 func main() {
 	err := runner.Run()
