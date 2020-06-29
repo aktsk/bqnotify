@@ -10,7 +10,7 @@ import (
 var version = "0.2.0"
 
 func main() {
-	err := runner.Run()
+	err := runner.Run("config.yaml")
 	if err != nil {
 		fmt.Printf("%+v\n", err)
 		os.Exit(1)
