@@ -13,7 +13,7 @@ type PubSubMessage struct {
 
 // BqNotify is a main function to run bqnotify on Cloud Functions
 func BqNotify(ctx context.Context, m PubSubMessage) error {
-	err = runner.Run("./serverless_function_source_code/config.yaml")
+	err := runner.Run("./serverless_function_source_code/config.yaml")
 	if err != nil {
 		return err
 	}
