@@ -11,8 +11,8 @@ import (
 )
 
 // Run coordinates functions of bqnotify
-func Run() error {
-	conf, err := config.Parse()
+func Run(file string) error {
+	conf, err := config.Parse(file)
 	if err != nil {
 		return err
 	}

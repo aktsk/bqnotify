@@ -21,8 +21,8 @@ type Query struct {
 }
 
 // Parse parses config.yaml
-func Parse() (*Config, error) {
-	buf, err := ioutil.ReadFile("config.yaml")
+func Parse(file string) (*Config, error) {
+	buf, err := ioutil.ReadFile(file)
 	if err != nil {
 		return nil, err
 	}
