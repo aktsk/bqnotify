@@ -6,6 +6,7 @@
 $ gcloud pubsub topics create bqnotify
 
 $ gcloud functions deploy BqNotify \
+    --project mizzy-270104 \
     --region asia-northeast1 \
     --runtime go113 \
     --trigger-topic bqnotify \
