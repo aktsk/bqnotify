@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.5.0](https://github.com/aktsk/bqnotify/compare/v0.4.0...v0.5.0) (2020-06-30)
+
+* Use BQNOTIFY_PROJECT environment variable instead of the one defined in config.yaml [#22](https://github.com/aktsk/bqnotify/pull/22) ([mizzy](https://github.com/mizzy))
+
 ## [v0.4.0](https://github.com/aktsk/bqnotify/compare/v0.3.0...v0.4.0) (2020-06-30)
 
 * Use GCP_PROJECT environment variable instead of the one defined in config.yaml [#21](https://github.com/aktsk/bqnotify/pull/21) ([mizzy](https://github.com/mizzy))
