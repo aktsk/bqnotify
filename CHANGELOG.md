@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.6.0](https://github.com/aktsk/bqnotify/compare/v0.5.0...v0.6.0) (2020-06-30)
+
+* Adopt new Slack API [#23](https://github.com/aktsk/bqnotify/pull/23) ([mizzy](https://github.com/mizzy))
+
 ## [v0.5.0](https://github.com/aktsk/bqnotify/compare/v0.4.0...v0.5.0) (2020-06-30)
 
 * Use BQNOTIFY_PROJECT environment variable instead of the one defined in config.yaml [#22](https://github.com/aktsk/bqnotify/pull/22) ([mizzy](https://github.com/mizzy))
