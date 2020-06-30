@@ -3,8 +3,8 @@ module github.com/aktsk/bqnotify/example/cloud-functions
 go 1.13
 
 require (
-	cloud.google.com/go v0.59.0 // indirect
-	github.com/aktsk/bqnotify v0.3.0
+	cloud.google.com/go/bigquery v1.9.0 // indirect
+	github.com/aktsk/bqnotify v0.4.0
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/olekukonko/tablewriter v0.0.4 // indirect
 	go.opencensus.io v0.22.4 // indirect
@@ -18,4 +18,5 @@ require (
 	google.golang.org/grpc v1.30.0 // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
+	honnef.co/go/tools v0.0.1-2020.1.4 // indirect
 )
