@@ -2,6 +2,7 @@ package config
 
 import (
 	"io/ioutil"
+	"os"
 
 	"github.com/aktsk/bqnotify/lib/notify"
 
@@ -31,6 +32,10 @@ func Parse(file string) (*Config, error) {
 	err = yaml.Unmarshal(buf, conf)
 	if err != nil {
 		return nil, err
+	}
+
+	if conf.Project == "" {
+		conf.Project = os.Getenv("GCP_PROJECT")
 	}
 
 	return conf, nil
