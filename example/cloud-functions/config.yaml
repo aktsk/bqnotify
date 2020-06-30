@@ -1,5 +1,5 @@
-# If project is not defined, bqnotify uses the value of GCP_PROJECT
-# environment variable
+# If project is not defined, bqnotify uses the value of BQNOTIFY_PROJECT
+# or GCP_PROJECT environment variable
 project: mizzy-270104
 queries:
 - sql: |-

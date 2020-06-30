@@ -35,6 +35,10 @@ func Parse(file string) (*Config, error) {
 	}
 
 	if conf.Project == "" {
+		conf.Project = os.Getenv("BQNOTIFY_PROJECT")
+	}
+
+	if conf.Project == "" {
 		conf.Project = os.Getenv("GCP_PROJECT")
 	}
 
