@@ -9,12 +9,9 @@ import (
 
 // Slack has configurations for notifying to Slack
 type Slack struct {
-	Channel  string `json:"channel"`
-	URL      string `json:"-"`
-	IconURL  string `json:"icon_url"`
-	UserName string `json:"username"`
-	Title    string `json:"title"`
-	Color    string `json:"color"`
+	URL   string `json:"-"`
+	Title string `json:"title"`
+	Color string `json:"color"`
 }
 
 type payload struct {
@@ -29,10 +26,6 @@ type attachment struct {
 
 // Notify notifies BigQuery query results to Slack
 func (s Slack) Notify(message string) error {
-	if s.Channel[0] != '#' {
-		s.Channel = "#" + s.Channel
-	}
-
 	color := s.Color
 
 	a := attachment{
