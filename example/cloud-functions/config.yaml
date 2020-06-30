@@ -25,9 +25,6 @@ queries:
   # url: $SLACK_WEBHOOK_URL (Define SLACK_WEBHOOK_URL by the environment valiable)
 # Or you can also define global slack settings
 slack:
-  channel: test
   title: クエリの結果です
   color: good # good or danger or warning
-  username: bqnotifybot
-  iconurl: https://avatars0.githubusercontent.com/u/7151005
   # url: $SLACK_WEBHOOK_URL (Define SLACK_WEBHOOK_URL by the environment valiable)
