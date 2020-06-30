@@ -14,6 +14,7 @@ $ gcloud functions deploy BqNotify \
     --set-env-vars BQNOTIFY_PROJECT=mizzy-270104
 
 $ gcloud scheduler jobs create pubsub bqnotify \
+  --project mizzy-270104 \
   --message-body {} \
   --topic bqnotify \
   --schedule '0 0 * * *'
@@ -21,4 +22,4 @@ $ gcloud scheduler jobs create pubsub bqnotify \
 
 ## Notification result example
 
-![bqnotify.jpg](../bqnotify.jpg)
+![bqnotify.jpg](../../bqnotify.jpg)
