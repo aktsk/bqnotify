@@ -4,7 +4,7 @@ go 1.13
 
 require (
 	cloud.google.com/go/bigquery v1.9.0 // indirect
-	github.com/aktsk/bqnotify v0.4.0
+	github.com/aktsk/bqnotify v0.5.0
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/olekukonko/tablewriter v0.0.4 // indirect
 	go.opencensus.io v0.22.4 // indirect
