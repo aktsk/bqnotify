@@ -29,7 +29,7 @@ func Query(project string, query config.Query) ([]string, [][]string, error) {
 		headers = append(headers, s.Name)
 	}
 
-	rows := [][]string{[]string{}}
+	var rows [][]string
 
 	for {
 		var bqValues []bigquery.Value
