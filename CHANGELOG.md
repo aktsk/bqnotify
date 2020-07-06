@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.7.0](https://github.com/aktsk/bqnotify/compare/v0.6.0...v0.7.0) (2020-07-06)
+
+* Fix how to initialize rows variable [#24](https://github.com/aktsk/bqnotify/pull/24) ([mizzy](https://github.com/mizzy))
+
 ## [v0.6.0](https://github.com/aktsk/bqnotify/compare/v0.5.0...v0.6.0) (2020-06-30)
 
 * Adopt new Slack API [#23](https://github.com/aktsk/bqnotify/pull/23) ([mizzy](https://github.com/mizzy))
