@@ -38,12 +38,12 @@ func Run(file string) error {
 }
 
 func run(project string, query config.Query) error {
-	headers, values, err := bq.Query(project, query)
+	headers, rows, err := bq.Query(project, query)
 	if err != nil {
 		return err
 	}
 
-	if len(values) == 0 {
+	if len(rows) == 0 {
 		return nil
 	}
 
@@ -52,7 +52,7 @@ func run(project string, query config.Query) error {
 
 	table.SetHeader(headers)
 
-	for _, v := range values {
+	for _, v := range rows {
 		table.Append(v)
 	}
 
