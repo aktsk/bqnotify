@@ -20,8 +20,9 @@ type payload struct {
 }
 
 type attachment struct {
-	Text  string `json:"text"`
-	Color string `json:"color"`
+	Text     string   `json:"text"`
+	Color    string   `json:"color"`
+	MrkdwnIn []string `json:"mrkdwn_in"`
 }
 
 // Notify notifies BigQuery query results to Slack
@@ -29,8 +30,9 @@ func (s Slack) Notify(message string) error {
 	color := s.Color
 
 	a := attachment{
-		Text:  fmt.Sprintf("*%s*\n%s", s.Title, message),
-		Color: color,
+		Text:     fmt.Sprintf("*%s*\n%s", s.Title, message),
+		Color:    color,
+		MrkdwnIn: []string{"text"},
 	}
 
 	p := payload{Slack: s, Attachments: []attachment{a}}
