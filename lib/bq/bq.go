@@ -18,8 +18,24 @@ func Query(project string, query config.Query) ([]string, [][]string, error) {
 		return nil, nil, err
 	}
 
+	defer client.Close()
+
 	q := client.Query(query.SQL)
-	it, err := q.Read(ctx)
+
+	job, err := q.Run(ctx)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	status, err := job.Wait(ctx)
+	if err != nil {
+		return nil, nil, err
+	}
+	if err := status.Err(); err != nil {
+		return nil, nil, err
+	}
+
+	it, err := job.Read(ctx)
 	if err != nil {
 		return nil, nil, err
 	}
