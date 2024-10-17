@@ -2,6 +2,7 @@ package runner
 
 import (
 	"bytes"
+	"encoding/csv"
 	"os"
 
 	"github.com/aktsk/bqnotify/lib/bq"
@@ -47,19 +48,50 @@ func run(project string, query config.Query) error {
 		return nil
 	}
 
-	var buf bytes.Buffer
-	table := tablewriter.NewWriter(&buf)
+	// Human-readable table
+	query.Slack.URL = os.Getenv("SLACK_WEBHOOK_URL")
+	if query.Slack.URL != "" {
+		var buf bytes.Buffer
+		table := tablewriter.NewWriter(&buf)
 
-	table.SetHeader(headers)
+		table.SetHeader(headers)
 
-	for _, v := range rows {
-		table.Append(v)
+		for _, v := range rows {
+			table.Append(v)
+		}
+
+		table.Render()
+
+		err = query.Slack.Notify("```\n" + buf.String() + "```")
+		if err != nil {
+			return err
+		}
 	}
 
-	table.Render()
+	// CSV upload
+	if query.Slack.UploadChannelID != "" {
+		var csvBuffer bytes.Buffer
+		writer := csv.NewWriter(&csvBuffer)
 
-	query.Slack.URL = os.Getenv("SLACK_WEBHOOK_URL")
-	query.Slack.Notify("```\n" + buf.String() + "```")
+		err = writer.Write(headers)
+		if err != nil {
+			return err
+		}
+
+		for _, v := range rows {
+			if err := writer.Write(v); err != nil {
+				return err
+			}
+		}
+
+		writer.Flush()
+
+		if err := writer.Error(); err != nil {
+			return nil
+		}
+
+		return query.Slack.Upload(&csvBuffer)
+	}
 
 	return nil
 }
