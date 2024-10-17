@@ -18,6 +18,8 @@ func Query(project string, query config.Query) ([]string, [][]string, error) {
 		return nil, nil, err
 	}
 
+	defer client.Close()
+
 	q := client.Query(query.SQL)
 	it, err := q.Read(ctx)
 	if err != nil {
