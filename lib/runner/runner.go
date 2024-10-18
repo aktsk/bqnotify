@@ -3,6 +3,7 @@ package runner
 import (
 	"bytes"
 	"encoding/csv"
+	"fmt"
 	"os"
 
 	"github.com/aktsk/bqnotify/lib/bq"
@@ -39,14 +40,17 @@ func Run(file string) error {
 }
 
 func run(project string, query config.Query) error {
-	headers, rows, err := bq.Query(project, query)
+	result, err := bq.Query(project, query)
 	if err != nil {
 		return err
 	}
 
+	rows := result.Rows
 	if len(rows) == 0 {
 		return nil
 	}
+
+	headers := result.Headers
 
 	// Human-readable table
 	query.Slack.URL = os.Getenv("SLACK_WEBHOOK_URL")
@@ -90,7 +94,20 @@ func run(project string, query config.Query) error {
 			return nil
 		}
 
-		return query.Slack.Upload(&csvBuffer)
+		err = query.Slack.Upload(&csvBuffer)
+		if err != nil {
+			return err
+		}
+	}
+
+	// Notify the Dataset ID and Table ID of the result table
+	if query.Slack.URL != "" && query.ResultTable != nil {
+		url := fmt.Sprintf("https://console.cloud.google.com/bigquery?p=%s&d=%s&t=%s&page=table", project, result.DatasetID, result.TableID)
+		message := fmt.Sprintf("This query result has been written to the following table:\n\nProject ID: %s\nDataset ID: %s\nTable ID: %s\n\n%s", project, result.DatasetID, result.TableID, url)
+		err = query.Slack.Notify(message)
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil
