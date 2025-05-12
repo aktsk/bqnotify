@@ -58,7 +58,7 @@ func run(project string, query config.Query) error {
 		var buf bytes.Buffer
 		table := tablewriter.NewWriter(&buf)
 
-		table.SetHeader(headers)
+		table.Header(headers)
 
 		for _, v := range rows {
 			table.Append(v)
