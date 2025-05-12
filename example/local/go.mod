@@ -1,4 +1,4 @@
-module github.com/aktsk/bqnotify/example/cloud-functions
+module github.com/aktsk/bqnotify/example/local
 
 go 1.23.0
 

@@ -1,0 +1,27 @@
+queries:
+- sql: |-
+    SELECT
+      gender,
+      COUNT(*) AS rides,
+      AVG(tripduration / 60) AS avg_trip_duration
+    FROM
+      `bigquery-public-data`.new_york_citibike.citibike_trips
+    WHERE
+      tripduration IS NOT NULL
+    GROUP BY
+      gender
+    ORDER BY
+      avg_trip_duration
+  # You can define slack settings per query
+  slack:
+    channel: test
+    title: クエリの結果です
+    color: good # good or danger or warning
+    username: bqnotifybot
+    iconurl: https://avatars0.githubusercontent.com/u/7151005
+  # url: $SLACK_WEBHOOK_URL (Define SLACK_WEBHOOK_URL by the environment valiable)
+# Or you can also define global slack settings
+slack:
+  title: クエリの結果です
+  color: good # good or danger or warning
+  # url: $SLACK_WEBHOOK_URL (Define SLACK_WEBHOOK_URL by the environment valiable)
