@@ -58,7 +58,7 @@ func (s Slack) Notify(message string) error {
 func (s Slack) Upload(csvBuffer *bytes.Buffer) error {
 	api := slack.New(os.Getenv("SLACK_BOT_TOKEN"))
 
-	_, err := api.UploadFileV2Context(context.Background(), slack.UploadFileV2Parameters{
+	_, err := api.UploadFileContext(context.Background(), slack.UploadFileParameters{
 		FileSize: len(csvBuffer.String()),
 		Reader:   csvBuffer,
 		Filename: fmt.Sprintf("%s.csv", s.Title),
